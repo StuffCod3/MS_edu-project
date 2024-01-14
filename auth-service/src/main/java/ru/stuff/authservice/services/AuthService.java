@@ -1,16 +1,21 @@
 package ru.stuff.authservice.services;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import ru.stuff.authservice.dtos.account.ClaimsRequest;
 import ru.stuff.authservice.dtos.gateway.AuthRequest;
 import ru.stuff.authservice.dtos.gateway.AuthResponse;
 import ru.stuff.authservice.dtos.gateway.RefreshRequest;
 import ru.stuff.authservice.utils.JwtTokenUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -20,10 +25,13 @@ public class AuthService {
     private final JwtTokenUtil jwtTokenUtil;
 
     public ResponseEntity<AuthResponse> login(AuthRequest authRequest){
-        ResponseEntity<Claims> claimsUser = restTemplate.postForEntity("http://account-service/api/v1/get_user_claims", authRequest, Claims.class);
+        ResponseEntity<ClaimsRequest> claimsRequest = restTemplate.postForEntity("http://account-service/api/v1/get_user_claims", authRequest, ClaimsRequest.class);
 
-        if (claimsUser.getStatusCode() == HttpStatus.OK){
-            Claims claims = claimsUser.getBody();
+        if (claimsRequest.getStatusCode() == HttpStatus.OK){
+
+            Map<String, Object> dataFromClaimsRequest = new HashMap<>();
+            dataFromClaimsRequest.put("role", claimsRequest.getBody().getRole());
+            Claims claims = Jwts.claims(dataFromClaimsRequest);
 
             String accessToken = jwtTokenUtil.generateAccessToken(authRequest.getEmail(), claims);
             String refreshToken = jwtTokenUtil.generateRefreshToken(authRequest.getEmail());
