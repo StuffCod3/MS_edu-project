@@ -3,6 +3,8 @@ package ru.stuff.authservice.utils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -19,19 +21,19 @@ import java.util.Map;
 
 @Component
 @Slf4j
-@PropertySource("classpath:secrets.yml")
 public class JwtTokenUtil {
 
-    @Value("jwt.secret.access")
+    @Value("${jwt.secret.access}")
     private String accessSecret;
-    @Value("jwt.secret.refresh")
+    @Value("${jwt.secret.refresh}")
     private String refreshSecret;
 
-    //TODO Поменять данные
     public String generateAccessToken(String email, Claims claims){
         final LocalDateTime now = LocalDateTime.now();
         final Instant accessExpirationInstant = now.plusMinutes(15).atZone(ZoneId.systemDefault()).toInstant();
         final Date accessExpiration = Date.from(accessExpirationInstant);
+
+        claims.put("exp", accessExpiration);
 
         return Jwts.builder()
                 .setSubject(email)

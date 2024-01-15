@@ -24,8 +24,10 @@ public class AuthService {
     private final RestTemplate restTemplate;
     private final JwtTokenUtil jwtTokenUtil;
 
+    //TODO Сделать обработку ошибок
+
     public ResponseEntity<AuthResponse> login(AuthRequest authRequest){
-        ResponseEntity<ClaimsRequest> claimsRequest = restTemplate.postForEntity("http://account-service/api/v1/get_user_claims", authRequest, ClaimsRequest.class);
+        ResponseEntity<ClaimsRequest> claimsRequest = restTemplate.postForEntity("http://localhost:8082/api/v1/info/get_user_claims", authRequest, ClaimsRequest.class);
 
         if (claimsRequest.getStatusCode() == HttpStatus.OK){
 
