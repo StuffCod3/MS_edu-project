@@ -45,6 +45,7 @@ public class AuthService {
         }
     }
 
+    //TODO Подключить БД для хранения refresh токена
     public ResponseEntity<AuthResponse> refresh(RefreshRequest refreshRequest){
         if (jwtTokenUtil.validateRefreshToken(refreshRequest.getRefreshToken())){
             Claims claims = jwtTokenUtil.getRefreshClaims(refreshRequest.getRefreshToken());
