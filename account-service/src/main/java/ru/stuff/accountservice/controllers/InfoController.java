@@ -18,7 +18,7 @@ public class InfoController {
     private final UserService userService;
 
     @PostMapping("/get_user_claims")
-    public ResponseEntity<ClaimsResponse> sendClaimsUser(@RequestBody AuthRequest authRequest){
+    public ResponseEntity<?> sendClaimsUser(@RequestBody AuthRequest authRequest){
         return userService.sendClaims(authRequest);
     }
 }

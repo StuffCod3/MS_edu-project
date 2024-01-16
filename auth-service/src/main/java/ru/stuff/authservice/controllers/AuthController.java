@@ -16,12 +16,12 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest){
+    public ResponseEntity<?> login(@RequestBody AuthRequest authRequest){
         return authService.login(authRequest);
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest){
+    public ResponseEntity<?> refresh(@RequestBody RefreshRequest refreshRequest){
         return authService.refresh(refreshRequest);
     }
 }

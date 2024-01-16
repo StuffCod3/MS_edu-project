@@ -19,7 +19,7 @@ public class EditorController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody AuthRequest authRequest){
+    public ResponseEntity<?> register(@RequestBody AuthRequest authRequest){
         return userService.createUser(authRequest);
     }
 }
