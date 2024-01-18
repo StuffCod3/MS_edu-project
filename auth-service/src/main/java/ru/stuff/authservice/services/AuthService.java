@@ -26,7 +26,7 @@ public class AuthService {
 
     public ResponseEntity<?> login(AuthRequest authRequest) {
         try {
-            ResponseEntity<?> claimsRequest = restTemplate.postForEntity("http://localhost:8082/api/v1/info/get_user_claims", authRequest, ClaimsRequest.class);
+            ResponseEntity<?> claimsRequest = restTemplate.postForEntity("http://account-service/api/v1/info/get_user_claims", authRequest, ClaimsRequest.class);
             Map<String, Object> dataFromClaimsRequest = new HashMap<>();
             dataFromClaimsRequest.put("role", claimsRequest.getBody());
             Claims claims = Jwts.claims(dataFromClaimsRequest);
