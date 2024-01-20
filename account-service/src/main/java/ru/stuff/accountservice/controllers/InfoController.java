@@ -11,7 +11,7 @@ import ru.stuff.accountservice.services.UserService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/info")
+@RequestMapping("/account")
 public class InfoController {
 
     private final UserService userService;

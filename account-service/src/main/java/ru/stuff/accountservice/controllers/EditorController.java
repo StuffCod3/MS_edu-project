@@ -11,7 +11,7 @@ import ru.stuff.accountservice.services.UserService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/edit")
+@RequestMapping("/profile")
 public class EditorController {
 
     private final UserService userService;

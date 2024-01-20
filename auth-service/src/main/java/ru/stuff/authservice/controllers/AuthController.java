@@ -8,7 +8,7 @@ import ru.stuff.authservice.dtos.gateway.RefreshRequest;
 import ru.stuff.authservice.services.AuthService;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 @AllArgsConstructor
 public class AuthController {
 
