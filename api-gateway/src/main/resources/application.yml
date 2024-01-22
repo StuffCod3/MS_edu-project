@@ -4,22 +4,7 @@ server:
 spring:
   application:
     name: api-gateway
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: auth-service
-#          uri: lb://auth-service
-#          predicates:
-#            - Path=/api/v1/auth/**
-#          filters:
-#            - ApiAuthFilter
-#
-#        - id: account-service
-#          uri: lb://account-service
-#          predicates:
-#            - Path=/api/v1/info/**
-#          filters:
-#            - ApiAuthFilter
+  
 
 eureka:
   client:
