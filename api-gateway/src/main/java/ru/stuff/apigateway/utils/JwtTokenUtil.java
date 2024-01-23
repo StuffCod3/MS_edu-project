@@ -20,53 +20,26 @@ public class JwtTokenUtil {
     @Value("${jwt.secret.access}")
     private String accessSecret;
 
-    public Claims getAccessClaims(String token) {
-        return getClaims(token, accessSecret);
-    }
-
-    public boolean validateAccessToken(String accessToken) {
-        return validateToken(accessToken, accessSecret);
-    }
-
     // PRIVATE
 
-    private Claims getClaims(String token, String secret) {
+    public Claims getClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getSignInKey(secret))
+                .setSigningKey(getSignInKey(accessSecret))
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
 
-    private boolean validateToken(String token, String secret) {
-        try {
-            Jwts.parserBuilder()
-                    .setSigningKey(getSignInKey(secret))
-                    .build()
-                    .parseClaimsJws(token);
-            return true;
-        } catch (ExpiredJwtException expEx) {
-            log.error("Token expired", expEx);
-        } catch (UnsupportedJwtException unsEx) {
-            log.error("Unsupported jwt", unsEx);
-        } catch (MalformedJwtException mjEx) {
-            log.error("Malformed jwt", mjEx);
-        } catch (SignatureException sEx) {
-            log.error("Invalid signature", sEx);
-        } catch (Exception e) {
-            log.error("invalid token", e);
-        }
-        return false;
+    private boolean isTokenExpired(String token) {
+        return this.getClaims(token).getExpiration().before(new Date());
+    }
+
+    public boolean isInvalid(String token) {
+        return this.isTokenExpired(token);
     }
 
     private Key getSignInKey(String secret) {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-
-
-
-
-
 }

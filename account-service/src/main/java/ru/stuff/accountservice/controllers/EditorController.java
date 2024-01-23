@@ -2,10 +2,7 @@ package ru.stuff.accountservice.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.stuff.accountservice.dtos.auth.AuthRequest;
 import ru.stuff.accountservice.services.UserService;
 
@@ -19,5 +16,10 @@ public class EditorController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest authRequest){
         return userService.createUser(authRequest);
+    }
+
+    @GetMapping("/hi")
+    public String hi(){
+        return "JJJ";
     }
 }
