@@ -41,9 +41,9 @@ jobs:
     - name: Build and Push to YC
       uses: docker/build-push-action@v5
       with:
-        context: ./auth-service
+        context: ./pc-service
         push: true
-        tags: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/auth-service:latest
+        tags: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/pc-service:latest
 
   deploy: 
     name: Deploy
@@ -57,5 +57,5 @@ jobs:
         yc-sa-json-credentials: ${{ secrets.YC_KEYS }}
         container-name: ${{ secrets.YC_CONTAINER_NAME }}
         folder-id: ${{ secrets.YC_FOLDER_ID }}
-        revision-image-url: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/auth-service:latest
+        revision-image-url: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/pc-service:latest
         revision-service-account-id: ${{ secrets.YC_SA_ID }} 
