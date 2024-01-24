@@ -19,7 +19,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Docker Build and Push to DockerHub
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: ./account-service
         push: true
@@ -38,10 +38,10 @@ jobs:
         username: json_key
         password: ${{ secrets.YC_KEYS }}
     
-    - name: Docker Build and Push to YC
-      uses: docker/build-push-action@v3
+    - name: Build and Push to YC
+      uses: docker/build-push-action@v5
       with:
         context: ./auth-service
         push: true
-        tags: ${{ secrets.YC_REGISTRY_ID }}/auth-service:latest
+        tags: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/auth-service:latest
           
