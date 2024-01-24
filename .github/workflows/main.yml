@@ -63,4 +63,4 @@ jobs:
                        URL_POSTGRES=${{ secrets.URL_POSTGRES }}
                        USER_POSTGRES=${{ secrets.USER_POSTGRES }}
                        PASS_POSTGRES=${{ secrets.PASS_POSTGRES }}
-
+                       PORT=${{ secrets.PORT }}
