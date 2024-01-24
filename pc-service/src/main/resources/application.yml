@@ -2,7 +2,10 @@ spring:
   application:
     name: account-service
   datasource:
-    url: jdbc:postgresql://51.250.26.59:5432/pc_db
-    username: secUREusER
-    password: StrongEnoughPassword)
+    url: ${URL_POSTGRES}
+    username: ${USER_POSTGRES}
+    password: ${PASS_POSTGRES}
     driver-class-name: org.postgresql.Driver
+
+
+#jdbc:postgresql://51:250:26:59:5432/pc_db: secUREusER StrongEnoughPassword)
