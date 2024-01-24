@@ -43,7 +43,7 @@ jobs:
     - name: Run Tests
       run: |
         cd pc-service
-        mvn -f ./pc-service/pom.xml test
+        mvn test
         
   build-and-push-yc:
     runs-on: ubuntu-latest
