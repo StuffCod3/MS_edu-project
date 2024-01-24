@@ -1,6 +1,7 @@
 package ru.stuff.pcservice.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Table(name = "pcs")
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class PC {
 
     @Id

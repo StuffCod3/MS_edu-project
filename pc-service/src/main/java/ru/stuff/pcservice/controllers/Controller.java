@@ -16,17 +16,17 @@ public class Controller {
     private final PcService pcService;
 
     @GetMapping("/test")
-    private String test(){
+    public String test(){
         return "HELLO PC-SERVICE";
     }
 
     @GetMapping("/showAll")
-    private List<PC> showAll(){
+    public List<PC> showAll(){
         return pcService.findAll();
     }
 
     @GetMapping("/get_price")
-    private String showAll(@RequestParam String title){
+    public String showAll(@RequestParam String title){
         return pcService.findByTitle(title);
     }
 }

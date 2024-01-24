@@ -7,7 +7,8 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 ADD . $HOME
 RUN chmod +x mvnw && \
-    ./mvnw -f $HOME/pom.xml clean package -DskipTests=true
+    ./mvnw -f $HOME/pom.xml clean test && \
+    ./mvnw -f $HOME/pom.xml package -DskipTests=true
 
 #
 # Package stage
