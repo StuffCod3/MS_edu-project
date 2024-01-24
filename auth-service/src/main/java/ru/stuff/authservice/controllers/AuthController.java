@@ -23,4 +23,9 @@ public class AuthController {
     public ResponseEntity<?> refresh(@RequestBody RefreshRequest refreshRequest){
         return authService.refresh(refreshRequest);
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "Auth Service is Started";
+    }
 }
