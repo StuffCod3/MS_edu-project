@@ -17,7 +17,7 @@ public class Controller {
 
     @GetMapping("/test")
     public String test(){
-        return "HELLO PC-SERVICE!";
+        return "HELLO PC-SERVICE";
     }
 
     @GetMapping("/showAll")
