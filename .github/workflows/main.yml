@@ -83,3 +83,5 @@ jobs:
                        URL_POSTGRES=${{ secrets.URL_POSTGRES }}
                        USER_POSTGRES=${{ secrets.USER_POSTGRES }}
                        PASS_POSTGRES=${{ secrets.PASS_POSTGRES }}
+        revision-memory: '4096m'
+        revision-cpu: 2
