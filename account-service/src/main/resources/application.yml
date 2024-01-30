@@ -16,6 +16,11 @@ spring:
     password: StrongEnoughPassword)
     driver-class-name: org.postgresql.Driver
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 eureka:
   client:

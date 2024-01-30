@@ -1,3 +1,6 @@
+server:
+  port: 8083
+
 spring:
   application:
     name: pc-service
@@ -19,6 +22,3 @@ management:
     web:
       exposure:
         include: '*'
-
-
-
