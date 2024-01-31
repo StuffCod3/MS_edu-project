@@ -1,6 +1,7 @@
 package ru.stuff.pcservice.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import ru.stuff.pcservice.services.PcService;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @AllArgsConstructor
 public class Controller {
@@ -17,6 +19,7 @@ public class Controller {
 
     @GetMapping("/test")
     public String test(){
+        log.info("Hello");
         return "HELLO PC-SERVICE";
     }
 
